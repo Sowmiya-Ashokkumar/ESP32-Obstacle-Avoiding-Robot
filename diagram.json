@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "author": "Autonomous Robot Project",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp32",
+      "top": 100,
+      "left": 100
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "imu",
+      "top": -60,
+      "left": 80,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "sonar",
+      "top": -60,
+      "left": 280,
+      "attrs": { "distance": "50" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_motA_fwd",
+      "top": 300,
+      "left": 80,
+      "attrs": { "color": "green", "label": "L-FWD" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_motA_rev",
+      "top": 300,
+      "left": 120,
+      "attrs": { "color": "red", "label": "L-REV" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_motB_fwd",
+      "top": 300,
+      "left": 200,
+      "attrs": { "color": "green", "label": "R-FWD" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_motB_rev",
+      "top": 300,
+      "left": 240,
+      "attrs": { "color": "red", "label": "R-REV" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 265,
+      "left": 80,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 265,
+      "left": 120,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 265,
+      "left": 200,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 265,
+      "left": 240,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    ["esp32:GND.2",  "imu:GND",   "black",  []],
+    ["esp32:3V3",    "imu:VCC",   "red",    []],
+    ["esp32:21",     "imu:SDA",   "blue",   []],
+    ["esp32:22",     "imu:SCL",   "yellow", []],
+
+    ["esp32:GND.2",  "sonar:GND", "black",  []],
+    ["esp32:5V",     "sonar:VCC", "red",    []],
+    ["esp32:5",      "sonar:TRIG","orange", []],
+    ["esp32:18",     "sonar:ECHO","purple", []],
+
+    ["esp32:25",     "r1:1",           "green", []],
+    ["r1:2",         "led_motA_fwd:A", "green", []],
+    ["esp32:GND.2",  "led_motA_fwd:C", "black", []],
+
+    ["esp32:26",     "r2:1",           "red",   []],
+    ["r2:2",         "led_motA_rev:A", "red",   []],
+    ["esp32:GND.2",  "led_motA_rev:C", "black", []],
+
+    ["esp32:32",     "r3:1",           "green", []],
+    ["r3:2",         "led_motB_fwd:A", "green", []],
+    ["esp32:GND.2",  "led_motB_fwd:C", "black", []],
+
+    ["esp32:33",     "r4:1",           "red",   []],
+    ["r4:2",         "led_motB_rev:A", "red",   []],
+    ["esp32:GND.2",  "led_motB_rev:C", "black", []],
+
+    ["esp32:GND.2",  "esp32:0",        "gray",  []]
+  ]
+}
